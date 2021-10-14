@@ -1,0 +1,3 @@
+/Users/kitson_swann/Documents/udacity_cpp/udacity_cpp_p3/build/CMakeFiles/rebuild_cache.dir
+/Users/kitson_swann/Documents/udacity_cpp/udacity_cpp_p3/build/CMakeFiles/edit_cache.dir
+/Users/kitson_swann/Documents/udacity_cpp/udacity_cpp_p3/build/CMakeFiles/membot.dir

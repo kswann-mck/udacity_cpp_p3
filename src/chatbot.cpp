@@ -37,10 +37,10 @@ ChatBot::~ChatBot()
     std::cout << "ChatBot Destructor" << std::endl;
 
     // deallocate heap memory
-    if(_image != nullptr) // Attention: wxWidgets used NULL and not nullptr
+    if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
     {
         delete _image;
-        _image = nullptr;
+        _image = NULL;
     }
 }
 
@@ -63,10 +63,6 @@ ChatBot& ChatBot::operator=(ChatBot &source) {
     if (this == &source)
         return *this;
 
-    // if (_image != nullptr) {
-    //     delete _image;
-    // }
-
     _image = new wxBitmap();
     *_image = *source._image;
     _rootNode = source._rootNode;
@@ -80,10 +76,6 @@ ChatBot& ChatBot::operator=(ChatBot &source) {
 ChatBot::ChatBot(ChatBot &&source) {
 
     std::cout << "ChatBot Move Constructor" << std::endl;
-    
-    // if (_image != nullptr) {
-    //     delete _image;
-    // }
 
     _image = new wxBitmap();
     *_image = *source._image;
@@ -103,10 +95,6 @@ ChatBot& ChatBot::operator=(ChatBot &&source) {
 
     if (this == &source)
         return *this;
-
-    // if (_image != nullptr) {
-    //     delete _image;
-    // }
 
     _image = new wxBitmap();
     *_image = *source._image;
@@ -163,19 +151,13 @@ void ChatBot::ReceiveMessageFromUser(std::string message)
 
 void ChatBot::SetCurrentNode(GraphNode *node)
 {
-    std::cout << "Inside SetCurrentNode" << std::endl;
     // update pointer to current node
     _currentNode = node;
-    std::cout << "1" << std::endl;
     // select a random node answer (if several answers should exist)
     std::vector<std::string> answers = _currentNode->GetAnswers();
-    std::cout << "2" << std::endl;
     std::mt19937 generator(int(std::time(0)));
-    std::cout << "3" << std::endl;
     std::uniform_int_distribution<int> dis(0, answers.size() - 1);
-    std::cout << "4" << std::endl;
     std::string answer = answers.at(dis(generator));
-    std::cout << "5" << std::endl;
 
     // send selected node answer to user
     _chatLogic->SendMessageToUser(answer);
